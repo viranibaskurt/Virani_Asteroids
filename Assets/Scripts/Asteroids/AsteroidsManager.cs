@@ -18,7 +18,6 @@ namespace Asteroids
         public bool IsCleared => activeAsteroids.Count == 0;
         public event Action OnAsteroidsCleared;
 
-        //TODO shouldn't create where the ship is
         public void CreateAsteroids(int numberOfAsteroids)
         {
             for (int i = 0; i < numberOfAsteroids; i++)
@@ -66,6 +65,11 @@ namespace Asteroids
             }
         }
 
+        /// <summary>
+        /// Splits asteroid into smaller two asteroids when it has zero health
+        /// </summary>
+        /// <param name="type"></param>
+        /// <param name="pos"></param>
         private void SplitAsteroid(AsteroidType type, Vector3 pos)
         {
             for (int i = 0; i < 2; i++)
@@ -84,6 +88,7 @@ namespace Asteroids
             asteroid.LocalScale = new Vector3(config.Size, config.Size, 1);
             asteroid.Type = type;
 
+            //TODO shouldn't create where the player ship is
             asteroid.Position = pos ?? playAreaBounds.GetRandomPtInScreenInWorldSpace(0.5f);
             float xV = rnd.Next(1, 10) * 0.1f;
             float yV = rnd.Next(1, 10) * 0.1f;

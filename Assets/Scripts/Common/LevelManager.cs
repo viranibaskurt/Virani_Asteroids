@@ -32,6 +32,9 @@ namespace Asteroids
             asteroidsManager.OnAsteroidsCleared -= AsteroidsCleared;
         }
 
+        /// <summary>
+        /// Clears the current level and generates a new one
+        /// </summary>
         public void StartGame()
         {
             asteroidsManager.ClearAsteroids();
@@ -46,6 +49,10 @@ namespace Asteroids
             spawnEnemyShipCoroutine = StartCoroutine(SpawnEnemyShipRoutione());
         }
 
+        /// <summary>
+        /// Spawns the enemy ship after with a delay
+        /// </summary>
+        /// <returns></returns>
         private IEnumerator SpawnEnemyShipRoutione()
         {
             enemyShip.SetActive(false);
@@ -83,7 +90,6 @@ namespace Asteroids
 
         private void LevelCleared()
         {
-            //start level again
             StartGame();
         }
     }

@@ -9,7 +9,7 @@ namespace Asteroids
         [SerializeField] private BulletPool bulletPool;
         [SerializeField] private PlayAreaBounds playAreaBounds;
         private HashSet<Bullet> activeBullets = new HashSet<Bullet>();
-        private HashSet<Bullet> releasingBullets = new HashSet<Bullet>();
+        private HashSet<Bullet> releasingBullets = new HashSet<Bullet>(); //use this to not to delete element from active bullets directly
 
         private void Start()
         {
@@ -29,7 +29,6 @@ namespace Asteroids
             }
 
             FlushReleasingBullets();
-
         }
 
         private void FlushReleasingBullets()

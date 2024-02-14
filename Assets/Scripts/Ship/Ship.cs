@@ -12,13 +12,12 @@ namespace Asteroids
         [SerializeField] private ShipEngine engine;
         [SerializeField] private Turret turret;
 
-        //TODO set it to ship settings
+        //TODO move it to ship settings
         [SerializeField] private float linearDrag = 1f;
         [SerializeField] private float angularDrag = 1f;
 
         private float horizontalInput;
         private float verticalInput;
-
 
         private void Awake()
         {

@@ -21,6 +21,10 @@ namespace Asteroids
             directionCoroutione = null;
         }
 
+
+        /// <summary>
+        /// Moves the ship up and down in random time intervals
+        /// </summary>
         private IEnumerator DirectionRoutine()
         {
             while (true)

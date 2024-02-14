@@ -45,7 +45,6 @@ namespace Asteroids
 
         private void OnReleaseCallback(Asteroid asteroid)
         {
-            //TODO remove health callbacks
             asteroid.gameObject.SetActive(false);
         }
         private void OnDestroyCallback(Asteroid asteroid)

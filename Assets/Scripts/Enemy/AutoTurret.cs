@@ -31,6 +31,10 @@ namespace Asteroids
             StopCoroutine(fireCoroutine);
             fireCoroutine = null;
         }
+
+        /// <summary>
+        /// automatically targets and fires in time intervals
+        /// </summary>
         private IEnumerator FireRoutine()
         {
             while (true)
