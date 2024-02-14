@@ -2,17 +2,33 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Asteroid : MonoBehaviour
+namespace Asteroids
 {
-    // Start is called before the first frame update
-    void Start()
+    public class Asteroid : MonoBehaviour
     {
-        
-    }
+        [SerializeField] private SpriteRenderer spriteRenderer;
+        [SerializeField] private MoveComponent moveComponent;
+        [SerializeField] private HealthComponent healthComponent;
+        public HealthComponent HealthComponent => healthComponent;
+        public MoveComponent MoveComponent => moveComponent;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        public AsteroidType Type { get; set; }
+        public Sprite Sprite
+        {
+            get => spriteRenderer.sprite;
+            set => spriteRenderer.sprite = value;
+        }
+
+        public Vector3 LocalScale
+        {
+            get => transform.localScale;
+            set => transform.localScale = value;
+        }
+
+        public Vector3 Position
+        {
+            get => transform.position;
+            set => transform.position = value;
+        }
     }
 }

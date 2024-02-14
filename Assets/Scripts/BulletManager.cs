@@ -21,7 +21,7 @@ namespace Asteroids
             foreach (Bullet bullet in activeBullets)
             {
                 float currentTime = Time.time;
-                if (bullet.LifeTime < currentTime - bullet.FireTime)
+                if (bullet.LifeTime < currentTime - bullet.FireTime || bullet.IsHit)
                 {
                     releasingBullets.Add(bullet);
                 }

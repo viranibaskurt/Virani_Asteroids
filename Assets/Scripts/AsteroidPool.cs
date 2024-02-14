@@ -27,6 +27,11 @@ namespace Asteroids
             return pool.Get();
         }
 
+        public void Release(Asteroid asteroid)
+        {
+            pool.Release(asteroid);
+        }
+
         private Asteroid OnCreateCallback()
         {
             return Instantiate(asteroidPrefab);
@@ -39,6 +44,7 @@ namespace Asteroids
 
         private void OnReleaseCallback(Asteroid asteroid)
         {
+            //TODO remove health callbacks
             asteroid.gameObject.SetActive(false);
         }
         private void OnDestroyCallback(Asteroid asteroid)

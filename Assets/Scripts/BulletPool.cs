@@ -52,10 +52,7 @@ namespace Asteroids
 
         private void OnReleaseCallback(Bullet bullet)
         {
-            var rb2d = bullet.Rb2d;
-            rb2d.velocity = Vector2.zero;
-            rb2d.angularVelocity = 0f;
-            rb2d.simulated = false;
+            bullet.ResetState();
             bullet.gameObject.SetActive(false);
         }
         private void OnDestroyCallback(Bullet bullet)

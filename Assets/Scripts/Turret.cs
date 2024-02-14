@@ -19,8 +19,7 @@ namespace Asteroids
         private void Fire()
         {
             Bullet bullet = bulletPool.Get();
-            bullet.Fire(transform.position, transform.up, fireImpulse);
-
+            bullet.Fire(transform.position, transform.up, fireImpulse, transform.parent.gameObject);
         }
     }
 }

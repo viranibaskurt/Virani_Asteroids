@@ -12,6 +12,11 @@ namespace Asteroids
             get => velocity;
             set => velocity = value;
         }
+        public float Angle
+        {
+            get => transform.rotation.z;
+            set => transform.rotation = Quaternion.AngleAxis(value, Vector3.forward);
+        }
 
         private void Update()
         {

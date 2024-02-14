@@ -8,9 +8,10 @@ namespace Asteroids
     public class Ship : MonoBehaviour
     {
         [SerializeField] private Rigidbody2D rb2d;
-        [SerializeField] private ColliderComponent colliderComponent;
+        [SerializeField] private TriggerComponent triggerComponent;
         [SerializeField] private HealthComponent healthComponent;
         [SerializeField] private ShipEngine engine;
+
         //TODO set it to ship settings
         [SerializeField] private float linearDrag = 1f;
         [SerializeField] private float angularDrag = 1f;
@@ -28,7 +29,7 @@ namespace Asteroids
 
         void Start()
         {
-            colliderComponent.CollisionEnter2D += ColliderComponent_CollisionEnter2D;
+            triggerComponent.TriggerEnter2D += ColliderComponent_TriggerEnter2D;
         }
 
         void Update()
@@ -40,13 +41,17 @@ namespace Asteroids
 
         private void OnDestroy()
         {
-            colliderComponent.CollisionEnter2D -= ColliderComponent_CollisionEnter2D;
+            triggerComponent.TriggerEnter2D -= ColliderComponent_TriggerEnter2D;
+        }
+        public void SetState(bool state)
+        {
+            gameObject.SetActive(state);
         }
 
-        private void ColliderComponent_CollisionEnter2D(Collision2D collision2D)
+        private void ColliderComponent_TriggerEnter2D(Collider2D col2d)
         {
             //Todo replace it with damage provider
-            var damageDealer = collision2D.gameObject.GetComponentInParent<DamageDealerComponent>();
+            var damageDealer = col2d.gameObject.GetComponentInParent<DamageDealerComponent>();
             if (damageDealer)
             {
                 if (healthComponent.TakeDamage(damageDealer.Amount) <= 0)

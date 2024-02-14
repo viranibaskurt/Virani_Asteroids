@@ -8,7 +8,7 @@ namespace Asteroids
     public class HealthComponent : MonoBehaviour
     {
         [SerializeField] private int initialHealth;
-
+        public event Action<HealthComponent> OnDamageTaken;
         public int Health { get; set; }
 
         private void Awake()
@@ -19,6 +19,7 @@ namespace Asteroids
         public int TakeDamage(int amount)
         {
             Health = Mathf.Max(Health - amount, 0);
+            OnDamageTaken?.Invoke(this);
             return Health;
         }
     }
