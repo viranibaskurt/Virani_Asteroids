@@ -30,5 +30,10 @@ namespace Asteroids
             get => transform.position;
             set => transform.position = value;
         }
+
+        public void ResetAsteroid()
+        {
+            healthComponent.ResetHealth();
+        }
     }
 }

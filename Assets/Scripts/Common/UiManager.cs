@@ -9,9 +9,13 @@ public class UiManager : MonoBehaviour
 {
     [SerializeField] private Button playButton;
     [SerializeField] private TextMeshProUGUI scoreText;
+    [SerializeField] private TextMeshProUGUI gameOverText;
+
     public Button PlayButton => playButton;
     private void Start()
     {
+        SetMainScreenActive(true);
+        SetGameOverScreenActive(false);
         playButton.onClick.AddListener(OnPlayPressed);
     }
 
@@ -20,7 +24,7 @@ public class UiManager : MonoBehaviour
         playButton.onClick.RemoveListener(OnPlayPressed);
     }
 
-    public void SetPlayButtonState(bool state)
+    public void SetMainScreenActive(bool state)
     {
         playButton.gameObject.SetActive(state);
     }
@@ -32,7 +36,11 @@ public class UiManager : MonoBehaviour
 
     private void OnPlayPressed()
     {
-        SetPlayButtonState(false);
+        SetMainScreenActive(false);
     }
 
+    public void SetGameOverScreenActive(bool state)
+    {
+        gameOverText.gameObject.SetActive(state);
+    }
 }

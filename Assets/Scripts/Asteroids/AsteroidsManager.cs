@@ -18,23 +18,6 @@ namespace Asteroids
         public bool IsCleared => activeAsteroids.Count == 0;
         public event Action OnAsteroidsCleared;
 
-        private void Update()
-        {
-            if (Input.GetKeyDown(KeyCode.U))
-            {
-                CreateAsteroids(1);
-            }
-            if (Input.GetKeyDown(KeyCode.H))
-            {
-                var ast = FindObjectsOfType<Asteroid>();
-                ast[rnd.Next(0, activeAsteroids.Count)].HealthComponent.TakeDamage(1);
-            }
-            if (Input.GetKeyDown(KeyCode.C))
-            {
-                ClearAsteroids();
-            }
-        }
-
         //TODO shouldn't create where the ship is
         public void CreateAsteroids(int numberOfAsteroids)
         {
@@ -42,7 +25,6 @@ namespace Asteroids
             {
                 AsteroidType type = rnd.Next(0, 2) == 1 ? AsteroidType.Large : AsteroidType.Medium;
                 var asteroid = Create(type, null);
-                activeAsteroids.Add(asteroid);
             }
         }
 
@@ -50,7 +32,7 @@ namespace Asteroids
         {
             foreach (Asteroid asteroid in activeAsteroids)
             {
-                asteroid.HealthComponent.OnDamageTaken -= HealthComponent_OnDamageTaken;
+                asteroid.HealthComponent.OnHealthChanged -= HealthComponent_OnHealthChanged;
                 playAreaBounds.ClampedTr.Remove(asteroid.transform);
                 asteroidPool.Release(asteroid);
             }
@@ -59,12 +41,12 @@ namespace Asteroids
 
         private void Destroy(Asteroid asteroid)
         {
-            asteroid.HealthComponent.OnDamageTaken -= HealthComponent_OnDamageTaken;
+            asteroid.HealthComponent.OnHealthChanged -= HealthComponent_OnHealthChanged;
             activeAsteroids.Remove(asteroid);
             asteroidPool.Release(asteroid);
         }
 
-        private void HealthComponent_OnDamageTaken(HealthComponent asteroidHealthComp)
+        private void HealthComponent_OnHealthChanged(HealthComponent asteroidHealthComp)
         {
             if (asteroidHealthComp.Health <= 0 && asteroidHealthComp.TryGetComponent(out Asteroid asteroid))
             {
@@ -110,8 +92,9 @@ namespace Asteroids
             moveComponent.Angle = angle;
             moveComponent.Velocity = new Vector2(xV, yV);
 
-            asteroid.HealthComponent.OnDamageTaken += HealthComponent_OnDamageTaken;
+            asteroid.HealthComponent.OnHealthChanged += HealthComponent_OnHealthChanged;
             playAreaBounds.ClampedTr.Add(asteroid.transform);
+            activeAsteroids.Add(asteroid);
 
             return asteroid;
         }

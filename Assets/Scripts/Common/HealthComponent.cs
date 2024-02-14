@@ -5,10 +5,10 @@ using UnityEngine;
 
 namespace Asteroids
 {
-    public class HealthComponent : MonoBehaviour
+    public class HealthComponent : MonoBehaviour, IDamageReceiver
     {
         [SerializeField] private int initialHealth;
-        public event Action<HealthComponent> OnDamageTaken;
+        public event Action<HealthComponent> OnHealthChanged;
         public int Health { get; set; }
 
         private void Awake()
@@ -19,8 +19,13 @@ namespace Asteroids
         public int TakeDamage(int amount)
         {
             Health = Mathf.Max(Health - amount, 0);
-            OnDamageTaken?.Invoke(this);
+            OnHealthChanged?.Invoke(this);
             return Health;
+        }
+
+        public void ResetHealth()
+        {
+            Health = initialHealth;
         }
     }
 }

@@ -78,6 +78,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   amount: 2
+  triggerComponent: {fileID: 6514830303998555568}
 --- !u!114 &8776756991519800667
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -185,6 +186,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8776756992691417937}
   - component: {fileID: 8776756992691417967}
+  - component: {fileID: 6514830303998555568}
   m_Layer: 9
   m_Name: Collider
   m_TagString: Untagged
@@ -217,9 +219,21 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!114 &6514830303998555568
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8776756992691417936}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55da5b8b2b22b3841b56b81b829aac1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

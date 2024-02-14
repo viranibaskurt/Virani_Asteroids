@@ -6,7 +6,7 @@ namespace Asteroids
 {
     public class MoveComponent : MonoBehaviour
     {
-        [SerializeField] private Vector2 velocity;
+        [SerializeField] protected Vector2 velocity;
         public Vector2 Velocity
         {
             get => velocity;
@@ -18,7 +18,7 @@ namespace Asteroids
             set => transform.rotation = Quaternion.AngleAxis(value, Vector3.forward);
         }
 
-        private void Update()
+        protected virtual void Update()
         {
             transform.Translate(Velocity * Time.deltaTime);
         }

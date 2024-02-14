@@ -37,9 +37,10 @@ namespace Asteroids
             return Instantiate(asteroidPrefab);
         }
 
-        private void OnGetCallback(Asteroid bullet)
+        private void OnGetCallback(Asteroid asteroid)
         {
-            bullet.gameObject.SetActive(true);
+            asteroid.ResetAsteroid();
+            asteroid.gameObject.SetActive(true);
         }
 
         private void OnReleaseCallback(Asteroid asteroid)

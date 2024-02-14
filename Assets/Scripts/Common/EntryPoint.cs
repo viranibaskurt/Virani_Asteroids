@@ -7,6 +7,7 @@ namespace Asteroids
     public class EntryPoint : MonoBehaviour
     {
         [SerializeField] private Ship ship;
+        [SerializeField] private EnemyShip enemyShip;
         [SerializeField] private LevelManager levelManager;
         [SerializeField] private PlayAreaBounds bounds;
         [SerializeField] private UiManager uiManager;
@@ -22,7 +23,9 @@ namespace Asteroids
         private void Start()
         {
             bounds.ClampedRb2dTr.Add(ship.transform);
+            bounds.ClampedTr.Add(enemyShip.transform);
             uiManager.PlayButton.onClick.AddListener(levelManager.StartGame);
+            enemyShip.AutoTurret.Target = ship;
         }
 
         private void OnDestroy()

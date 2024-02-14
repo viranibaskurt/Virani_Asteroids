@@ -47,12 +47,12 @@ namespace Asteroids
 
         private void OnGetCallback(Bullet bullet)
         {
+            bullet.ResetState();
             bullet.gameObject.SetActive(true);
         }
 
         private void OnReleaseCallback(Bullet bullet)
         {
-            bullet.ResetState();
             bullet.gameObject.SetActive(false);
         }
         private void OnDestroyCallback(Bullet bullet)

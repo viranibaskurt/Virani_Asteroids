@@ -110,8 +110,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   triggerComponent: {fileID: 2645130152901794143}
-  damageDealerComponent: {fileID: 2723420778157486240}
   rb2d: {fileID: 2723420778157486242}
+  damageDealerComponent: {fileID: 2723420778157486240}
   lifeTime: 4
 --- !u!114 &2723420778157486240
 MonoBehaviour:
@@ -126,6 +126,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   amount: 1
+  triggerComponent: {fileID: 2645130152901794143}
 --- !u!50 &2723420778157486242
 Rigidbody2D:
   serializedVersion: 4

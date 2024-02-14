@@ -6,26 +6,29 @@ namespace Asteroids
     public class Bullet : MonoBehaviour
     {
         [SerializeField] private TriggerComponent triggerComponent;
-        [SerializeField] private DamageDealerComponent damageDealerComponent;
         [SerializeField] private Rigidbody2D rb2d;
+        [SerializeField] private DamageDealerComponent damageDealerComponent;
         [SerializeField] private float lifeTime = 1f;
         public Rigidbody2D Rb2d => rb2d;
-
         public float LifeTime => lifeTime;
-        public GameObject Instigator { get; private set; }
         public float FireTime { get; private set; }
         public bool IsHit { get; private set; }
+        public Collider2D Instigator
+        {
+            get => damageDealerComponent.InstigatorCollider;
+            set => damageDealerComponent.InstigatorCollider = value;
+        }
         private void Awake()
         {
-            triggerComponent.TriggerEnter2D += TriggerComponent_TriggerEnter2D;
+            damageDealerComponent.OnDamageDealt += DamageDealerComponent_OnDamageDealt;
         }
 
         private void OnDestroy()
         {
-            triggerComponent.TriggerEnter2D -= TriggerComponent_TriggerEnter2D;
+            damageDealerComponent.OnDamageDealt -= DamageDealerComponent_OnDamageDealt;
         }
 
-        public void Fire(Vector2 position, Vector2 direction, float impulse, GameObject instigator)
+        public void Fire(Vector2 position, Vector2 direction, float impulse, Collider2D instigator)
         {
             Instigator = instigator;
             transform.position = position;
@@ -44,15 +47,9 @@ namespace Asteroids
             Instigator = null;
         }
 
-        private void TriggerComponent_TriggerEnter2D(Collider2D col2d)
+        private void DamageDealerComponent_OnDamageDealt(DamageDealerComponent _)
         {
-            //TODO create active damage dealer and move this part
-            var health = col2d.gameObject.GetComponentInParent<HealthComponent>();
-            if (health && health != Instigator)
-            {
-                health.TakeDamage(damageDealerComponent.Amount);
-                IsHit = true;
-            }
+            IsHit = true;
         }
     }
 }
