@@ -37,6 +37,7 @@ public class UiManager : MonoBehaviour
     private void OnPlayPressed()
     {
         SetMainScreenActive(false);
+        SetGameOverScreenActive(false);
     }
 
     public void SetGameOverScreenActive(bool state)

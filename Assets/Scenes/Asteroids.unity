@@ -905,7 +905,7 @@ MonoBehaviour:
   playAreaBounds: {fileID: 1451372548}
   bulletManager: {fileID: 428149561}
   uiManager: {fileID: 1033154825}
-  numberOfAsteroidsInLevel: 1
+  numberOfAsteroidsInLevel: 2
 --- !u!4 &1192062940
 Transform:
   m_ObjectHideFlags: 0
@@ -1373,7 +1373,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7659762346784977367, guid: 8f31e70f991809744a85f87502906e2d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -6.33
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7659762346784977367, guid: 8f31e70f991809744a85f87502906e2d, type: 3}
       propertyPath: m_LocalPosition.y
